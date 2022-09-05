@@ -1,0 +1,125 @@
+body {
+    background-color: black;
+    font-family: monospace;
+}
+#home-name {
+    color: white;
+    position: relative;
+    margin-left: 100px;
+    margin-top: 200px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 80px;
+    text-shadow: 5px 5px #777777;
+}
+#description {
+    color: #CECECE;
+    position: relative;
+    margin-left: 100px;
+    margin-right: 300px;
+    margin-top: -30px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+}
+
+.blog-button {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
+    color: white;
+    margin-left: 100px;
+    text-decoration: none;
+}
+.blog-button:hover {
+    color: #2987e4;
+    transition-duration: 1s;
+}
+.button {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
+    color: white;
+    margin-left: 50px;
+    text-decoration: none;
+}
+.button:hover {
+    color: #2987e4;
+    transition-duration: 1s;
+}
+
+.footer {
+    position: fixed;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    height: 150px;
+    width: 80%;
+    background-color: #2987e4;
+    color: white;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 10px 10px #6EB7FF;
+}
+
+#blog-title {
+    color: white;
+    position: relative;
+    margin-left: 50px;
+    margin-top: 50px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 80px;
+    text-shadow: 5px 5px #777777;
+}
+
+#contacts-title {
+    color: white;
+    position: relative;
+    margin-left: 50px;
+    margin-top: 50px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 80px;
+    text-shadow: 5px 5px #777777;
+}
+
+.dance {
+    float: right;
+}
+
+.contact-type {
+    color: white;
+    position: relative;
+    margin-left: 50px;
+    margin-top: 10px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    text-shadow: 2px 2px #777777;
+}
+
+.line-div {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+    height: 1px;
+    border: 0;
+    background-color: #777777;
+}
+
+.post-title {
+    color: white;
+    position: relative;
+    margin-left: 50px;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
+    text-shadow: 2px 2px #777777;
+}
+
+.post-text {
+    color: #cfcfcf;
+    position: relative;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+}
