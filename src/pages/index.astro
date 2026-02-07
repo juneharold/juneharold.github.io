@@ -1,0 +1,332 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projects = [
+  {
+    title: "Project Alpha",
+    description:
+      "A deep learning framework for efficient neural architecture search. Built with a focus on reproducibility and minimal compute overhead.",
+    tags: ["Python", "PyTorch", "CUDA"],
+    link: "https://github.com/juneharold",
+    index: "01",
+  },
+  {
+    title: "Project Beta",
+    description:
+      "Mathematical optimization toolkit implementing novel gradient-free methods for non-convex problems.",
+    tags: ["Python", "NumPy", "C++"],
+    link: "https://github.com/juneharold",
+    index: "02",
+  },
+  {
+    title: "Project Gamma",
+    description:
+      "Full-stack web application with real-time data visualization and interactive dashboards.",
+    tags: ["TypeScript", "React", "D3.js"],
+    link: "https://github.com/juneharold",
+    index: "03",
+  },
+];
+
+const allPosts = await getCollection("blog");
+const recentPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+  });
+}
+---
+
+<Layout>
+  <!-- Nav -->
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 bg-bg/80 backdrop-blur-md border-b border-border/50"
+  >
+    <a href="/" class="font-mono text-xs tracking-widest text-text-muted hover:text-accent transition-colors">
+      JH
+    </a>
+    <div class="flex gap-8">
+      <a href="#about" class="font-mono text-xs tracking-wider text-text-muted hover:text-text transition-colors">About</a>
+      <a href="#projects" class="font-mono text-xs tracking-wider text-text-muted hover:text-text transition-colors">Projects</a>
+      <a href="#blog" class="font-mono text-xs tracking-wider text-text-muted hover:text-text transition-colors">Blog</a>
+      <a href="/Resume.pdf" target="_blank" class="font-mono text-xs tracking-wider text-text-muted hover:text-text transition-colors">CV</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-20 relative">
+    <!-- Decorative grid lines -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 left-[20%] w-px h-full bg-border/30"></div>
+      <div class="absolute top-0 left-[80%] w-px h-full bg-border/30 hidden md:block"></div>
+      <div class="absolute top-[60%] left-0 w-full h-px bg-border/30"></div>
+    </div>
+
+    <div class="relative">
+      <div class="section-label mb-8 animate-slide-right" style="animation: slideRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.2s forwards; opacity:0;">
+        Portfolio / 2025
+      </div>
+
+      <h1 class="font-display font-bold leading-[0.9] tracking-tight mb-8">
+        <span class="block text-[clamp(3rem,10vw,8rem)]" style="animation: slideUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; opacity:0;">
+          Juneha
+        </span>
+        <span class="block text-[clamp(3rem,10vw,8rem)] text-accent" style="animation: slideUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.45s forwards; opacity:0;">
+          Hwang<span class="text-text">.</span>
+        </span>
+      </h1>
+
+      <div class="max-w-xl" style="animation: slideUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.6s forwards; opacity:0;">
+        <p class="text-lg md:text-xl text-text-muted leading-relaxed">
+          CS undergraduate at <span class="text-text font-medium">KAIST</span>, working at the intersection of
+          <span class="text-text font-medium">deep learning</span> and
+          <span class="text-text font-medium">mathematics</span>.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-4 mt-10" style="animation: fadeIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.8s forwards; opacity:0;">
+        <a
+          href="https://github.com/juneharold"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-text text-bg font-medium text-sm tracking-wide hover:bg-accent hover:text-white transition-all duration-300"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/juneha-hwang-01b1b71b9/"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-text-muted font-medium text-sm tracking-wide hover:border-text hover:text-text transition-all duration-300"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="/Resume.pdf"
+          target="_blank"
+          class="inline-flex items-center gap-2 px-5 py-2.5 border border-border text-text-muted font-medium text-sm tracking-wide hover:border-text hover:text-text transition-all duration-300"
+        >
+          Resume &darr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-6 md:left-12 flex items-center gap-3" style="animation: fadeIn 1s ease 1.2s forwards; opacity:0;">
+      <div class="w-px h-12 bg-border-loud relative overflow-hidden">
+        <div class="w-full bg-accent absolute top-0 left-0 animate-pulse" style="height: 50%;"></div>
+      </div>
+      <span class="font-mono text-[0.65rem] text-text-muted tracking-widest uppercase">Scroll</span>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="px-6 md:px-12 lg:px-24 py-24 md:py-36 relative">
+    <div class="absolute top-0 left-0 right-0 h-px bg-border"></div>
+
+    <div class="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 max-w-6xl">
+      <div>
+        <div class="section-label mb-6 animate-slide-right">About</div>
+        <div class="font-mono text-[0.65rem] text-text-muted tracking-wider uppercase animate-on-scroll">
+          01 / Background
+        </div>
+      </div>
+
+      <div class="space-y-6 animate-on-scroll stagger-1">
+        <p class="text-xl md:text-2xl leading-relaxed font-display">
+          I'm a Korean CS student at KAIST, where I spend most of my time
+          thinking about <span class="text-accent font-semibold">deep learning architectures</span>
+          and <span class="text-accent font-semibold">mathematical optimization</span>.
+        </p>
+
+        <p class="text-text-muted leading-relaxed">
+          Some people know me as Harold. I'm drawn to problems that sit at the boundary of
+          theory and practice — understanding why neural networks generalize, building
+          efficient training pipelines, and finding elegant solutions to hard combinatorial
+          problems. Outside of academics, I think a lot about football.
+        </p>
+
+        <div class="flex items-center gap-4 pt-4 group cursor-default">
+          <img
+            src="/lingard.gif"
+            alt="Jesse Lingard celebration"
+            class="w-16 h-16 object-cover border border-border group-hover:border-accent transition-colors"
+          />
+          <p class="font-mono text-sm text-text-muted">
+            Avid <span class="text-accent font-medium">Manchester United</span> supporter.<br />
+            <span class="text-[0.7rem]">Yes, through the good times and the bad.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="px-6 md:px-12 lg:px-24 py-24 md:py-36 relative">
+    <div class="absolute top-0 left-0 right-0 h-px bg-border"></div>
+
+    <div class="max-w-6xl">
+      <div class="flex items-end justify-between mb-16">
+        <div>
+          <div class="section-label mb-6 animate-slide-right">Projects</div>
+          <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight animate-on-scroll">
+            Selected work
+          </h2>
+        </div>
+        <a
+          href="https://github.com/juneharold"
+          target="_blank"
+          rel="noopener"
+          class="hidden md:flex items-center gap-2 font-mono text-xs text-text-muted hover:text-accent transition-colors animate-on-scroll"
+        >
+          View all on GitHub
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+
+      <div class="grid gap-4">
+        {projects.map((project) => (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener"
+            class="card group grid md:grid-cols-[auto_1fr_auto] items-start md:items-center gap-4 md:gap-8 animate-on-scroll"
+          >
+            <span class="font-mono text-xs text-text-muted">{project.index}</span>
+
+            <div>
+              <h3 class="font-display text-lg font-semibold mb-1 group-hover:text-accent transition-colors">
+                {project.title}
+              </h3>
+              <p class="text-sm text-text-muted leading-relaxed max-w-lg">
+                {project.description}
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <a
+        href="https://github.com/juneharold"
+        target="_blank"
+        rel="noopener"
+        class="md:hidden flex items-center gap-2 mt-8 font-mono text-xs text-text-muted hover:text-accent transition-colors"
+      >
+        View all on GitHub
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="px-6 md:px-12 lg:px-24 py-24 md:py-36 relative">
+    <div class="absolute top-0 left-0 right-0 h-px bg-border"></div>
+
+    <div class="max-w-6xl">
+      <div class="section-label mb-6 animate-slide-right">Blog</div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-16 animate-on-scroll">
+        Writing
+      </h2>
+
+      <div class="space-y-0">
+        {recentPosts.map((post, i) => (
+          <a
+            href={`/blog/${post.id}`}
+            class:list={[
+              "group block py-8 border-b border-border hover:border-accent transition-colors animate-on-scroll",
+              i === 0 && "border-t",
+            ]}
+          >
+            <div class="grid md:grid-cols-[1fr_auto] gap-4 items-start">
+              <div>
+                <h3 class="font-display text-lg md:text-xl font-semibold group-hover:text-accent transition-colors mb-2">
+                  {post.data.title}
+                </h3>
+                <p class="text-sm text-text-muted leading-relaxed max-w-lg">
+                  {post.data.excerpt}
+                </p>
+              </div>
+              <span class="font-mono text-xs text-text-muted tracking-wider whitespace-nowrap">
+                {formatDate(post.data.date)}
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 mt-8 font-mono text-xs text-text-muted hover:text-accent transition-colors animate-on-scroll"
+      >
+        View all posts
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="px-6 md:px-12 lg:px-24 py-20 relative">
+    <div class="absolute top-0 left-0 right-0 h-px bg-border"></div>
+
+    <div class="max-w-6xl grid md:grid-cols-[2fr_1fr_1fr] gap-12">
+      <div class="animate-on-scroll">
+        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight mb-4">
+          Let's connect<span class="text-accent">.</span>
+        </h2>
+        <p class="text-text-muted leading-relaxed max-w-md">
+          Always open to conversations about research, collaboration, or football takes.
+        </p>
+        <a
+          href="mailto:junehahwang@gmail.com"
+          class="inline-block mt-6 font-mono text-sm text-text hover:text-accent transition-colors border-b border-border hover:border-accent pb-1"
+        >
+          junehahwang@gmail.com
+        </a>
+      </div>
+
+      <div class="animate-on-scroll stagger-1">
+        <div class="font-mono text-[0.65rem] text-text-muted tracking-widest uppercase mb-4">
+          Links
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href="https://github.com/juneharold" target="_blank" rel="noopener" class="text-sm text-text-muted hover:text-text transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/juneha-hwang-01b1b71b9/" target="_blank" rel="noopener" class="text-sm text-text-muted hover:text-text transition-colors">LinkedIn</a>
+          <a href="https://www.instagram.com/juneharold_/" target="_blank" rel="noopener" class="text-sm text-text-muted hover:text-text transition-colors">Instagram</a>
+          <a href="/Resume.pdf" target="_blank" class="text-sm text-text-muted hover:text-text transition-colors">Resume</a>
+        </div>
+      </div>
+
+      <div class="animate-on-scroll stagger-2">
+        <div class="font-mono text-[0.65rem] text-text-muted tracking-widest uppercase mb-4">
+          Site
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href="#about" class="text-sm text-text-muted hover:text-text transition-colors">About</a>
+          <a href="#projects" class="text-sm text-text-muted hover:text-text transition-colors">Projects</a>
+          <a href="#blog" class="text-sm text-text-muted hover:text-text transition-colors">Blog</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <span class="font-mono text-[0.65rem] text-text-muted tracking-wider">
+        &copy; {new Date().getFullYear()} Juneha Hwang
+      </span>
+      <span class="font-mono text-[0.65rem] text-text-muted tracking-wider">
+        Built with Astro + Tailwind
+      </span>
+    </div>
+  </footer>
+</Layout>
