@@ -18,15 +18,9 @@
   --color-blue: #3b82f6;
 }
 
-/* KaTeX MathML hidden (Tailwind preflight conflicts with KaTeX CSS) */
+/* KaTeX: hide MathML source (Tailwind preflight overrides KaTeX's own hiding) */
 .katex-mathml {
-  position: absolute;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0;
-  border: 0;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
+  display: none !important;
 }
 
 @layer base {
