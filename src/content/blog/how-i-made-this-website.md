@@ -1,173 +1,68 @@
 ---
-title: "How I made this website"
-date: 2023-02-21
-excerpt: "A walkthrough of building a personal site from scratch — from planning to deployment on GitHub Pages."
-tags: ["Web Development", "HTML", "CSS", "GitHub Pages"]
+title: "How I rebuilt this website with Claude"
+date: 2025-02-07
+excerpt: "I used Claude Code to rebuild my personal site from scratch with Astro and Tailwind CSS — here's how the process went."
+tags: ["Astro", "Tailwind CSS", "Claude", "AI"]
 ---
 
-Building a personal website from scratch is one of the most rewarding projects you can undertake as a developer. It's a space that's entirely yours — a digital canvas to showcase your work, share your thoughts, and establish your online presence. In this post, I'll walk you through how I built my first personal website using HTML and CSS, and deployed it on GitHub Pages.
+My old personal site was a handful of static HTML files with inline CSS from 2023. It worked, but it looked like it was built by a high schooler — because it was. Now that I'm a CS student at KAIST with actual projects and experience to show, I decided it was time for a rebuild. This time, I used [Claude Code](https://claude.ai) as my pair programmer.
 
-## Planning the Site
+## The old site
 
-Before writing any code, I spent time thinking about what I wanted the site to accomplish. For me, it was simple:
+The original version was about as basic as it gets: `index.html`, `blog.html`, `contact.html`, a `style.css` file, and a Jesse Lingard GIF. No build step, no components, no responsive design. Just hardcoded HTML with 80px Josefin Sans headings and fixed left margins. It had character, but it wasn't doing me any favors.
 
-- A place to introduce myself
-- Showcase my projects
-- Share occasional blog posts
-- Provide ways to contact me
+## Starting the rebuild
 
-I sketched out a rough wireframe on paper, mapping out the sections: a hero area, about section, projects grid, blog preview, and footer. This planning phase is crucial — it saves you from aimlessly coding without direction.
+I knew I wanted to move to **Astro** with **Tailwind CSS** — a modern static site generator with component-based architecture and utility-first styling, while still shipping zero JavaScript by default. I set up a `CLAUDE.md` file in the repo with my design direction and constraints:
 
-## Choosing the Right Tools
+- Dark theme, creative typography, mobile-first
+- Sections: hero, about, projects, blog, footer
+- Must deploy to GitHub Pages
+- Keep my existing assets (resume PDF, the Lingard GIF — non-negotiable)
 
-For my first iteration, I kept things minimal:
+Then I told Claude to read through the existing codebase, note what to preserve, and rebuild from scratch.
 
-- **HTML5** for structure
-- **CSS3** for styling
-- **No frameworks** — just vanilla code
+## How Claude helped
 
-This might seem old-school in 2023, but there's immense value in understanding the fundamentals before reaching for React or Vue. You learn how the web actually works.
+The whole process was conversational. I described what I wanted at a high level and Claude handled the implementation:
 
-I used **Visual Studio Code** as my text editor, which comes with excellent HTML/CSS support out of the box. Extensions like Live Server made development smooth by auto-refreshing the browser on save.
+1. **Scaffolding** — initialized the Astro project, installed Tailwind CSS 4, set up the directory structure while preserving my `.git` history and assets.
 
-## Building the HTML Structure
+2. **Design** — Claude built the homepage with an editorial-brutalist aesthetic: oversized type in the hero, monospace section labels, a red accent color (a nod to Manchester United), decorative grid lines, and a subtle film grain overlay. The lingard.gif ended up in the About section next to the Man United mention.
 
-I started with a semantic HTML structure. Here's a simplified version of my `index.html`:
+3. **Blog infrastructure** — set up Astro content collections with a proper schema, created the blog listing and individual post pages, and wired the homepage to pull from real data instead of hardcoded placeholders.
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juneha Hwang</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <nav>
-    <!-- Navigation links -->
-  </nav>
+4. **Deployment** — configured a GitHub Actions workflow to build and deploy to Pages on every push to `main`.
 
-  <section id="hero">
-    <h1>Juneha Hwang</h1>
-    <p>CS student at KAIST</p>
-  </section>
+The key thing: I stayed in control of the decisions. Claude asked me before changing personal details (like updating "high school student" to "CS major at KAIST"), and I directed the content — which projects to feature, which social links to include, what tone the About section should have.
 
-  <section id="about">
-    <!-- About content -->
-  </section>
+## The tech stack
 
-  <section id="projects">
-    <!-- Project cards -->
-  </section>
+Here's what the site runs on now:
 
-  <footer>
-    <!-- Contact info and links -->
-  </footer>
-</body>
-</html>
-```
+- **Astro 5** — static site generator with content collections for the blog
+- **Tailwind CSS 4** — utility-first CSS with the new CSS-based configuration
+- **GitHub Actions** — automated build and deploy to GitHub Pages
+- **No client-side JavaScript** — except a small IntersectionObserver for scroll animations
 
-Using semantic tags like `<nav>`, `<section>`, and `<footer>` not only makes the code more readable but also improves accessibility and SEO.
+The entire site builds in under 500ms.
 
-## Styling with CSS
+## What I learned
 
-This is where the site comes to life. I wanted a clean, modern aesthetic with good typography and subtle animations. Here's my approach:
+**AI pair programming works best when you know what you want.** Claude is fast at generating code, but the quality of the output depends heavily on the quality of the input. Having a clear `CLAUDE.md` with design direction, constraints, and site structure made the whole process smooth.
 
-### Typography
+**Review everything.** I tweaked the About section copy, changed nav labels, and adjusted content based on my actual resume. Claude did the heavy lifting, but the editorial decisions were mine.
 
-I chose **Inter** for body text and **JetBrains Mono** for code snippets. Google Fonts makes this trivial:
+**Astro is great for this.** Content collections with type-safe schemas, zero-JS by default, and a clean component model — it's exactly what a personal site needs. No React, no hydration, just HTML.
 
-```html
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-```
+## What's next
 
-### Color Scheme
+- Fill in the project cards with my actual work (Linq Alpha, FABRIC interpreter, emotion recognition CNN)
+- Write more blog posts
+- Maybe add a `/uses` page
 
-I opted for a light theme with a limited color palette:
-- Primary: `#1a1a1a` (near black)
-- Accent: `#3b82f6` (blue)
-- Background: `#ffffff`
-- Muted text: `#666666`
-
-### Responsive Design
-
-Mobile-first CSS was essential. I used Flexbox and CSS Grid for layouts, and media queries to adjust for larger screens:
-
-```css
-.projects {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-```
-
-### Animations
-
-Subtle animations enhance user experience without being distracting. I added a fade-in effect using CSS animations:
-
-```css
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-```
-
-## Testing Across Devices
-
-I tested the site on:
-- Chrome, Firefox, and Safari
-- Desktop, tablet, and mobile viewports
-- Different screen sizes using Chrome DevTools
-
-This revealed spacing issues on mobile and font sizes that needed adjustment. Testing early and often saves headaches later.
-
-## Deploying to GitHub Pages
-
-GitHub Pages offers free hosting for static sites, perfect for personal portfolios. Here's how I deployed:
-
-1. Created a repository named `juneharold.github.io`
-2. Pushed my HTML/CSS files to the `main` branch
-3. Enabled GitHub Pages in the repository settings
-4. Accessed the site at `https://juneharold.github.io`
-
-The process is remarkably smooth. Any push to `main` automatically updates the live site.
-
-## What I Learned
-
-Building this site taught me:
-
-- **Start simple**: Don't over-engineer. A static HTML/CSS site is often enough.
-- **Design matters**: Even basic CSS can create a polished look with attention to spacing, typography, and color.
-- **Mobile-first is essential**: Most visitors will view on mobile.
-- **Iteration is key**: Version 1 doesn't need to be perfect. You can always refine.
-
-## Next Steps
-
-I'm already thinking about improvements:
-- Adding a dark mode toggle
-- Migrating to a static site generator like Astro
-- Implementing a proper blog with Markdown support
-- Improving accessibility with ARIA labels
-
-If you're thinking about building your own site, just start. Pick a text editor, write some HTML, and see where it takes you. The web is your canvas.
+If you're thinking about rebuilding your personal site, I'd recommend the Claude Code + Astro combo. Set up your constraints in a markdown file, be specific about what you want, and let the AI handle the boilerplate while you focus on the content.
 
 ---
 
-Thanks for reading! If you have questions or want to share your own site-building journey, feel free to reach out.
+The source code for this site is on [GitHub](https://github.com/juneharold/juneharold.github.io).
