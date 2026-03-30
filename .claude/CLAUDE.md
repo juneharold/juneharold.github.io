@@ -19,7 +19,7 @@ Personal portfolio for Juneha Hwang (Harold). Static site on GitHub Pages.
 - **/** — homepage: hero, about, featured projects, blog preview, footer with socials
 - **/blog** — blog listing page (content collections)
 - **/blog/[slug]** — individual blog posts (markdown with KaTeX math support)
-- **/Resume.pdf** — resume (static asset in `public/`)
+- **/juneha_resume.pdf** — resume (static asset in `public/`)
 
 ## Key Files
 - `src/layouts/Layout.astro` — base layout (fonts, meta, KaTeX CSS, scroll observer)
