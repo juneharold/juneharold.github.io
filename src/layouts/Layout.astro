@@ -4,11 +4,13 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = "Juneha Hwang — CS @ KAIST",
-  description = "Personal site of Juneha Hwang. CS major at KAIST, working on deep learning and mathematical problem solving.",
+  title = "Juneha Hwang",
+  description = "Resume of Juneha Hwang.",
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -19,6 +21,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -27,11 +30,6 @@ const {
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
-    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,23 +43,5 @@ const {
   <body class="grain">
     <slot />
 
-    <script>
-      // Intersection Observer for scroll animations
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-      );
-
-      document
-        .querySelectorAll(".animate-on-scroll, .animate-slide-right")
-        .forEach((el) => observer.observe(el));
-    </script>
   </body>
 </html>
